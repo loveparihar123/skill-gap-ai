@@ -1,0 +1,417 @@
+:root {
+  --bg-deep: #020617;
+  --bg-surface: #0f172a;
+  --border-glow: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --neon-cyan: #38bdf8;
+  --neon-green: #10b981;
+  --neon-rose: #f43f5e;
+}
+
+/* 🎯 Main Wrapper Component with Smooth Page Entry Transition */
+.container {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 40px 2rem;
+  font-family: "Urbanist", sans-serif;
+  max-width: 850px; /* layout ko perfectly center me rakhne ke liye */
+  margin: 0 auto;
+
+  /* 👇 Premium Page Fade-In aur Slide-Up effect */
+  animation: pageReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes pageReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading {
+  color: #a78bfa;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* 🎯 Score Center Components */
+.scoreBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.scoreCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 3px solid var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+.scoreNumber {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.scoreLabel {
+  color: var(--text-secondary);
+  margin-top: 0.8rem;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* 🎯 Base Card Styling */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 20px;
+  color: var(--text-primary);
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+/* 🎯 Score Breakdown Progress Bars */
+.breakdownGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.breakdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.breakdownLabel {
+  color: var(--text-secondary);
+  font-size: 14px;
+  width: 100px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+.breakdownScore {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  width: 40px;
+  text-align: right;
+}
+
+/* 🎯 Two Column Grid Layout (Skills Grid) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* 🎯 Skill Badges Clound (Green & Red) */
+.tagGreen {
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--neon-green);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tagRed {
+  background: rgba(244, 63, 94, 0.08);
+  color: var(--neon-rose);
+  border: 1px solid rgba(244, 63, 94, 0.15);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 🎯 Company Eligibility List Layout */
+.companyEligible,
+.companyNotEligible {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid #1e293b;
+}
+.companyEligible:last-child,
+.companyNotEligible:last-child {
+  border-bottom: none;
+}
+
+.companyName {
+  color: var(--neon-green);
+  font-weight: 600;
+  font-size: 16px;
+}
+.companyNameRed {
+  color: var(--neon-rose);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.companyReason {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.companyScoreGreen {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--neon-green);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+.companyScoreRed {
+  background: rgba(244, 63, 94, 0.1);
+  color: var(--neon-rose);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* 🎯 Lists Styles (Roadmap & Improvements) */
+.roadmapItem {
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   🎤 PREMIUM ACCORDION SLIDE-DOWN EFFECT (INTERVIEW Q&A UPDATE)
+   ========================================================================== */
+
+.questionWrapper {
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.01);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.questionWrapper:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.questionHeader {
+  padding: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.005);
+  transition: background 0.2s ease;
+}
+.questionHeader:hover {
+  background: rgba(56, 189, 248, 0.03);
+}
+
+.questionText {
+  color: var(--text-primary);
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0; /* Wrapper container padding handles it */
+}
+
+.iconToggle {
+  font-size: 22px;
+  color: var(--neon-cyan);
+  font-weight: bold;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  margin-left: 15px;
+}
+
+/* Accordion khulne par icon ghume */
+.iconRotate {
+  transform: rotate(180deg);
+}
+
+/* Modern CSS Grid Height Trick for Liquidy-Smooth Expansion */
+.answerContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.answerOpen {
+  grid-template-rows: 1fr;
+  border-top: 1px solid var(--border-glow);
+}
+
+.answerContent {
+  overflow: hidden;
+  padding: 0 1.2rem;
+  transition: padding 0.35s ease;
+}
+
+.answerOpen .answerContent {
+  padding: 1.2rem;
+}
+
+.questionMeta {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0 1.2rem 1.2rem 1.2rem; /* Content ke bahaar metadata perfect alignment ke liye */
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Purani individual question item styling (Backup compatibility if needed) */
+.questionItem {
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.topicTag {
+  background: #1e293b;
+  color: var(--neon-cyan);
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.difficultyTag {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* ========================================================================== */
+
+/* 🎯 Career Path Components */
+.careerItem {
+  margin-bottom: 1rem;
+}
+.careerItem:last-child {
+  margin-bottom: 0;
+}
+.careerLabel {
+  color: var(--neon-cyan);
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+.careerText {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 🎯 Timeline Widget Box */
+.timelineCard {
+  background: rgba(56, 189, 248, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.timelineCard span {
+  color: var(--text-secondary);
+}
+.timelineCard strong {
+  color: var(--neon-cyan);
+  font-size: 16px;
+}
+
+/* 🎯 Motivational Message Styling */
+.motivationCard {
+  background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+  border: 1px solid #312e81;
+  border-radius: 16px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+.motivationText {
+  font-style: italic;
+  color: #c084fc;
+  line-height: 1.6;
+}
+
+/* 🎯 Action Chat Button Style */
+.chatBtn {
+  width: 100%;
+  background: var(--neon-cyan);
+  color: var(--bg-deep);
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition:
+    opacity 0.2s,
+    transform 0.1s;
+}
+.chatBtn:hover {
+  opacity: 0.9;
+}
+.chatBtn:active {
+  transform: scale(0.98);
+}
+
+.empty {
+  color: var(--text-secondary);
+  font-size: 14px;
+}

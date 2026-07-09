@@ -1,0 +1,133 @@
+/* ==========================================================================
+   SECTION 1: NAV BAR CONTAINER DEFINITION
+   ========================================================================== */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  background-color: #020617; /* Matches your premium deep dark background */
+  border-bottom: 1px solid #1e293b;
+  position: sticky; /* Standard approach for tracking headers */
+  top: 0;
+  z-index: 100;
+}
+
+/* ==========================================================================
+   SECTION 2: LOGO & APP TITLE BRANDING
+   ========================================================================== */
+.logo {
+  font-weight: bold;
+  color: #a78bfa;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 50px; /* Aligned height for clean flex matching */
+  width: 50px;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  color: #f8fafc;
+}
+
+/* ==========================================================================
+   SECTION 3: NAVIGATION LINKS & ACTIONS HOLDER
+   ========================================================================== */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+/* --- Standard Nav Link Style (History Link) --- */
+.link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #38bdf8; /* Soft cyan color on hover to indicate activity */
+}
+
+.username {
+  color: #a78bfa;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   SECTION 4: LOGIN & REGISTER INTERACTIVE BUTTONS
+   ========================================================================== */
+
+/* --- Simple Modern Text Link Style for Login --- */
+.loginBtn {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.4rem 0.2rem;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+/* Changes text color smoothly without breaking backgrounds */
+.loginBtn:hover {
+  color: #38bdf8;
+}
+
+/* --- Solid Accent Button Style for Register --- */
+.registerBtn {
+  background-color: #7c3aed;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  transition:
+    background-color 0.25s ease,
+    transform 0.1s ease;
+}
+
+/* Standard depth shift on hover */
+.registerBtn:hover {
+  background-color: #6d28d9;
+}
+
+/* Tiny natural click feedback */
+.registerBtn:active {
+  transform: scale(0.97);
+}
+
+/* --- Danger Area Action Style for Logout --- */
+.logoutBtn {
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 0.4rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: #ef4444;
+}

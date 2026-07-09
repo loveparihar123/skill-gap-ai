@@ -1,0 +1,708 @@
+/* ==========================================================================
+   GLOBAL STYLE VARIABLES & CORE DESIGN SYSTEM
+   ========================================================================== */
+:root {
+  --bg-deep: #020617;
+  --bg-surface: #0f172a;
+  --border-glow: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --neon-cyan: #38bdf8;
+  --neon-green: #10b981;
+  --neon-rose: #f43f5e;
+}
+
+/* ==========================================================================
+   SECTION 1: MAIN PAGE WRAPPER & SMOOTH REVEAL ANIMATION
+   ========================================================================== */
+.resultPageWrapper {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  /* 🟢 FIXED: Changed hardcoded 80px to clamp. Responsive padding for mobile vs desktop */
+  padding: clamp(30px, 5vw, 60px) clamp(15px, 6vw, 80px);
+  font-family: "Urbanist", sans-serif;
+  text-decoration: none;
+  box-sizing: border-box; /* 🟢 FIXED: Keeps padding inside container limits */
+
+  /* Smooth page reveal layout transition */
+  animation: resultPageReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+@keyframes resultPageReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Navigation Header Top Actions --- */
+.topActionBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+  gap: 15px; /* 🟢 FIXED: Adds safety gap if elements come too close */
+  flex-wrap: wrap; /* 🟢 FIXED: Wraps layout items on super small screens */
+}
+
+.backArrowBtn {
+  background: transparent;
+  border: none;
+  color: var(--neon-cyan);
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.backArrowBtn:hover {
+  transform: translateX(-5px);
+}
+
+.fileTag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glow);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap; /* 🟢 FIXED: Prevents file extension from dropping to next line uglily */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 🟢 FIXED: Cuts long file names with "..." smoothly */
+  max-width: 200px;
+}
+
+/* --- Main Report Header --- */
+.resultHeader h1 {
+  /* 🟢 FIXED: Title text size scales nicely now, no more massive text overspilling */
+  font-size: clamp(22px, 5vw, 36px);
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: -0.5px;
+}
+
+.resultHeader h1 span {
+  color: var(--neon-cyan);
+}
+
+.summaryText {
+  color: var(--text-secondary);
+  /* 🟢 FIXED: Subtitle text size scales down safely on mobile layout */
+  font-size: clamp(14px, 2.5vw, 16px);
+  font-weight: 400;
+  max-width: 900px;
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   SECTION 2: CORE DASHBOARD GRID & MAIN CARDS
+   ========================================================================== */
+.insightsGrid {
+  display: grid;
+  /* 🟢 FIXED: Automatically adjusts columns based on available width, perfect fallback */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(15px, 4vw, 35px); /* Responsive gap spacing */
+  margin-top: 45px;
+}
+
+.insightCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  /* 🟢 FIXED: Reduced desktop 35px padding to clamp for extra space on mobile screens */
+  padding: clamp(20px, 4vw, 35px);
+  position: relative;
+  overflow: hidden;
+
+  /* Micro-interactions transition */
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.4s ease;
+  animation: cardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.insightCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 15px 30px rgba(56, 189, 248, 0.06);
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered Delay System for Smooth Sequential Loading */
+.insightsGrid .insightCard:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.insightsGrid .insightCard:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.insightsGrid .insightCard:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.insightsGrid .insightCard:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.insightCard h3 {
+  font-size: clamp(18px, 3vw, 20px);
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 22px;
+  color: var(--text-primary);
+}
+
+.cardIcon {
+  font-size: 22px;
+  color: var(--neon-cyan);
+}
+
+/* ==========================================================================
+   SECTION 3: SCORE BREAKDOWN & CAREER PATHS
+   ========================================================================== */
+
+/* --- Left Card: Score Breakdown Configuration --- */
+.scoreList {
+  display: grid;
+  /* 🟢 FIXED: Switches from 2-columns to 1-column layout automatically on small phones */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.scoreList p {
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scoreList strong {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* --- Right Card: Career Details Configuration --- */
+.careerDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.careerDetails p {
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap; /* 🟢 FIXED: Allows text tags to wrap beautifully on small viewports */
+}
+
+.careerDetails strong {
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 90px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* --- Alternative Roles Tags Container --- */
+.miniBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.altRoleTag {
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.altRoleTag:hover {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.2);
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   SECTION 4: RESUME IMPROVEMENTS
+   ========================================================================== */
+.styledList {
+  padding-left: 20px;
+}
+
+.styledList li {
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 14px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.cleanStatus {
+  color: var(--neon-green);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   SECTION 5: TARGET COMPANY ELIGIBILITY
+   ========================================================================== */
+.companyTimelineBox {
+  background: rgba(56, 189, 248, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 24px;
+  display: inline-block;
+  max-width: 100%; /* 🟢 FIXED: Prevents overflowing the container boundary box */
+  box-sizing: border-box;
+}
+
+.companyTimelineBox strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.eligibilityScrollBox {
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.eligibilityScrollBox::-webkit-scrollbar {
+  width: 5px;
+}
+
+.eligibilityScrollBox::-webkit-scrollbar-thumb {
+  background: var(--border-glow);
+  border-radius: 4px;
+}
+
+.companyItem {
+  padding: 18px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.companyItem::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-glow),
+    transparent
+  );
+}
+
+.companyItem:last-child::after {
+  display: none;
+}
+
+.companyHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* 🟢 FIXED: Moves eligible badge below company name if space gets tight */
+}
+
+.companyHeaderRow strong {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.companyReason {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* --- Eligibility Pill Badges --- */
+.eligibleTag,
+.notEligibleTag {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.eligibleTag {
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--neon-green);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.notEligibleTag {
+  background: rgba(244, 63, 94, 0.08);
+  color: var(--neon-rose);
+  border: 1px solid rgba(244, 63, 94, 0.15);
+}
+
+.noDataText {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   SECTION 6: SKILLS GAP ANALYZER
+   ========================================================================== */
+.skillsSplit {
+  display: grid;
+  /* 🟢 FIXED: Automatically breaks down 2 columns to 1 column layout on mobile views */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.skillsBox h4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badgesCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badgeItem {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.badgeItem.missing {
+  background: rgba(244, 63, 94, 0.06);
+  color: var(--neon-rose);
+  border: 1px solid rgba(244, 63, 94, 0.12);
+}
+
+.badgeItem.matching {
+  background: rgba(16, 185, 129, 0.06);
+  color: var(--neon-green);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+}
+
+/* Full layout utilities */
+.fullWidthCard {
+  grid-column: span 2;
+  margin-top: 35px;
+}
+
+/* ==========================================================================
+   SECTION 7: ACTIONABLE ROADMAP TIMELINE
+   ========================================================================== */
+.roadmapTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  padding-left: 5px;
+}
+
+.roadmapStep {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(
+    12px,
+    3vw,
+    25px
+  ); /* 🟢 FIXED: Shrinks massive gap on thin mobile views */
+  position: relative;
+}
+
+.stepMarker {
+  width: 38px;
+  height: 38px;
+  background: var(--bg-deep);
+  border: 2px solid var(--neon-cyan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon-cyan);
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.stepDetails h4 {
+  color: var(--neon-cyan);
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stepDetails p {
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.stepDetails p strong,
+.stepDetails p b {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   SECTION 8: AI INTERVIEW ACCORDION
+   ========================================================================== */
+.qaAccordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.qaItem {
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.01);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.qaItem:hover {
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.qaHeader {
+  padding: clamp(15px, 3vw, 22px); /* 🟢 FIXED: Dynamic padding adjustment */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 15px; /* 🟢 FIXED: Protection buffer space */
+  transition: background 0.2s ease;
+}
+
+.qaHeader:hover {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.qaHeader h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metaBadge {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.toggleIndicator {
+  font-size: 20px;
+  color: var(--neon-cyan);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.qaItem.active .toggleIndicator {
+  transform: rotate(180deg);
+}
+
+.qaBody {
+  display: grid !important;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.35s ease,
+    border-top-color 0.3s;
+  padding: 0 clamp(15px, 3vw, 22px);
+  border-top: 1px solid transparent;
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.qaBody strong,
+.qaBody b {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.qaBodyInner {
+  overflow: hidden;
+}
+
+.qaItem.active .qaBody {
+  grid-template-rows: 1fr;
+  padding: clamp(15px, 3vw, 22px);
+  border-top-color: var(--border-glow);
+}
+
+/* ==========================================================================
+   SECTION 9: SYSTEM FOOTER & MOTIVATIONAL QUOTE
+   ========================================================================== */
+.motivationalFooter {
+  margin-top: 45px;
+  text-align: center;
+  padding: clamp(
+    20px,
+    5vw,
+    45px
+  ); /* 🟢 FIXED: Smaller footer spacing for tiny screens */
+  position: relative;
+}
+
+.quoteIcon {
+  font-size: 50px; /* 🟢 FIXED: Scaled down giant icon size slightly */
+  color: rgba(56, 189, 248, 0.05);
+  line-height: 0;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.motivationalFooter p {
+  font-size: clamp(
+    15px,
+    3vw,
+    18px
+  ); /* 🟢 FIXED: Keeps text crisp and proportional */
+  font-style: italic;
+  font-weight: 400;
+  color: var(--neon-cyan);
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   SECTION 10: SAFETY ERROR CONTAINER
+   ========================================================================== */
+.errorContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  padding: 20px;
+  text-align: center;
+}
+
+.errorContainer h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: clamp(20px, 4vw, 24px);
+}
+
+.errorContainer p {
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.backBtn {
+  margin-top: 25px;
+  padding: 12px 28px;
+  background: var(--neon-cyan);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   ⚡ SECTION 11: SPECIFIC MEDIA QUERIES FOR TABLETS & SMALL PHONES
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* 🟢 Forcing the grid columns to act as a single stacked vertical column */
+  .insightsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 🟢 Disabling full span styling since grid is now a single straight column layout */
+  .fullWidthCard {
+    grid-column: span 1;
+    margin-top: 0;
+  }
+
+  /* 🟢 Stack skills box neatly */
+  .skillsSplit {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 🟢 Make metric rows stack neatly vertically if phone display is super narrow */
+  .scoreList {
+    grid-template-columns: 1fr;
+  }
+
+  /* 🟢 Aligning text and metadata beautifully inside compact accordion boxes */
+  .qaHeader h4 {
+    font-size: 14px;
+  }
+}

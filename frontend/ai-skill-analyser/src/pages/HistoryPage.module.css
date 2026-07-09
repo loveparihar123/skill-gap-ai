@@ -1,0 +1,228 @@
+/* ==========================================================================
+   GLOBAL STYLE VARIABLES & CORE DESIGN SYSTEM (Synced with Details Page)
+   ========================================================================== */
+:root {
+  --bg-deep: #020617;
+  --bg-surface: #0f172a;
+  --border-glow: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --neon-cyan: #38bdf8;
+  --neon-green: #10b981;
+  --neon-rose: #f43f5e;
+}
+
+/* ==========================================================================
+   SECTION 1: MAIN CONTAINER & PREMIUM ENTRY TRANSITION (NAVBAR CLICK EFFECT)
+   ========================================================================== */
+.container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 60px 2rem;
+  background-color: var(--bg-deep);
+  min-height: 100vh;
+  font-family: "Urbanist", sans-serif;
+
+  /* 🎬 PREMIUM ENTRY TRANSITION: Smooth Lift Up + Fluid Scale-In */
+  animation: premiumHistoryReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+}
+
+/* Keyframes logic for the smooth air-cushion lift effect */
+@keyframes premiumHistoryReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    filter: blur(4px); /* Halka sa futuristic soft blur effect starting me */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* ==========================================================================
+   SECTION 2: HEADER ROW & SYSTEM CONTROLS
+   ========================================================================== */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+  width: 100%;
+}
+
+.heading {
+  color: var(--text-primary);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* --- Clear All Danger Button Style --- */
+.clearAllBtn {
+  background-color: rgba(244, 63, 94, 0.08);
+  color: var(--neon-rose);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.clearAllBtn:hover {
+  background-color: var(--neon-rose);
+  color: white;
+  box-shadow: 0 4px 15px rgba(244, 63, 94, 0.2);
+}
+
+.clearAllBtn:active {
+  transform: scale(0.97);
+}
+
+.empty {
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 40px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SECTION 3: ANALYSIS CARD STRUCTURE & MICRO-INTERACTIONS
+   ========================================================================== */
+.card {
+  background: var(--bg-surface);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid var(--border-glow);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+
+  /* Smooth transition systems for standard elevation hover */
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.4s ease;
+}
+
+/* --- Card Lift Up on Hover --- */
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 12px 25px rgba(56, 189, 248, 0.04);
+}
+
+/* --- Single Item Delete Cross Button --- */
+.deleteSingleBtn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glow);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.deleteSingleBtn:hover {
+  color: var(--neon-rose);
+  background: rgba(244, 63, 94, 0.1);
+  border-color: rgba(244, 63, 94, 0.2);
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   SECTION 4: CARD DETAILS & DATA LAYOUTS
+   ========================================================================== */
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 35px;
+  margin-bottom: 6px;
+}
+
+.role {
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* --- Score Dynamic Pill Badge --- */
+.score {
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--neon-green);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 4px 14px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.date {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0 0 18px 0;
+}
+
+/* ==========================================================================
+   SECTION 5: MISSING SKILLS CAPSULE BADGES
+   ========================================================================== */
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.tag {
+  background: rgba(244, 63, 94, 0.05);
+  color: var(--neon-rose);
+  border: 1px solid rgba(244, 63, 94, 0.12);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   SECTION 6: INTERACTIVE NAVIGATION BUTTONS
+   ========================================================================== */
+.btn {
+  background: transparent;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--neon-cyan);
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--neon-cyan);
+  color: var(--bg-deep);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);
+  border-color: var(--neon-cyan);
+}

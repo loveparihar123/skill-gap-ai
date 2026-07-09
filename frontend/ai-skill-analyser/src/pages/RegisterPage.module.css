@@ -1,0 +1,139 @@
+/* ==========================================================================
+   SECTION 1: FULL SCREEN WRAPPER & BACKGROUND
+   ========================================================================== */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #020617; /* Matches your premium deep dark app layout */
+}
+
+/* ==========================================================================
+   SECTION 2: SIGNUP CARD WITH SMOOTH ENTRY TRANSITION
+   ========================================================================== */
+.card {
+  background: #0f172a; /* Upgraded to match your rich panel dark theme */
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #1e293b;
+
+  /* 🎬 Clean fluid transition: standard floating up effect on page render */
+  opacity: 0;
+  transform: translateY(15px);
+  animation: signupCardReveal 0.45s ease-out forwards;
+}
+
+/* Straightforward standard keyframes */
+@keyframes signupCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   SECTION 3: HEADINGS & ERROR TEXT TYPOGRAPHY
+   ========================================================================== */
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.error {
+  color: #ef4444;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   SECTION 4: INPUT FIELDS & ACTIVE STATES
+   ========================================================================== */
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  background: #020617; /* Solid interior depth contrast */
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  display: block;
+
+  /* Micro transition for smooth border color animations */
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* Smooth brand coloring shift when typing */
+.input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  background-color: rgba(124, 58, 237, 0.02);
+}
+
+/* ==========================================================================
+   SECTION 5: PRIMARY INTERACTIVE SUBMIT BUTTON
+   ========================================================================== */
+.btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+
+  /* Added micro-scale transitions for standard click action */
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.btn:hover {
+  background: #6d28d9;
+}
+
+/* Native tactile button press feedback on mouse click */
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   SECTION 6: SWITCH REDIRECTION FOOTER LINKS
+   ========================================================================== */
+.switchText {
+  text-align: center;
+  margin-top: 1.2rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.switchLink {
+  color: #a78bfa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Smooth color shift instead of generic browser underlines */
+.switchLink:hover {
+  color: #38bdf8; /* Transitions to a modern bright cyan */
+}

@@ -1,0 +1,156 @@
+/* ==========================================================================
+   SECTION 1: CHAT MAIN WRAPPER & PAGE ENTRY TRANSITION
+   ========================================================================== */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  background-color: #020617; /* Syncs cleanly with your entire system background */
+
+  /* 🎬 Standard page entry: smooth upward reveal when page mounts */
+  opacity: 0;
+  transform: translateY(15px);
+  animation: chatPageFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes chatPageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   SECTION 2: HEADER & IDENTITY
+   ========================================================================== */
+.heading {
+  text-align: center;
+  color: #a78bfa;
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* ==========================================================================
+   SECTION 3: THE CHAT CONTAINER BOX
+   ========================================================================== */
+.chatBox {
+  background: #0f172a; /* Premium surface dark panel color */
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #1e293b;
+}
+
+/* ==========================================================================
+   SECTION 4: CHAT BUBBLES & POP-IN MICRO-INTERACTION
+   ========================================================================== */
+.message {
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  max-width: 75%;
+  line-height: 1.6;
+  font-size: 0.95rem;
+
+  /* 🎬 Message Pop Effect: Triggered automatically whenever a new message is rendered */
+  animation: msgPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: scale(0.95) translateY(5px);
+}
+
+@keyframes msgPop {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* --- User Sent Bubble Style --- */
+.userMsg {
+  background: #7c3aed;
+  color: white;
+  align-self: flex-end;
+  border-radius: 14px 14px 2px 14px;
+}
+
+/* --- Assistant/AI Response Bubble Style --- */
+.assistantMsg {
+  background: #020617;
+  color: #f1f5f9;
+  align-self: flex-start;
+  border-radius: 14px 14px 14px 2px;
+  border: 1px solid #1e293b;
+}
+
+/* 🛠️ MODIFICATION HERE: Fixing Over-Bolding in AI Responses */
+.assistantMsg strong,
+.assistantMsg b {
+  font-weight: 600; /* Default heavy 700/800 se hata kar clean semi-bold kiya */
+  color: #f8fafc; /* Blurry bright white ki jagah elegant soft text color */
+  letter-spacing: 0.1px; /* Normal reading distance space */
+}
+
+/* ==========================================================================
+   SECTION 5: INPUT PANEL & INTERACTION CONTROLS
+   ========================================================================== */
+.inputBox {
+  display: flex;
+  gap: 0.8rem;
+  flex-shrink: 0;
+  padding-bottom: 1rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.input:focus {
+  border-color: #7c3aed;
+  background-color: rgba(124, 58, 237, 0.01);
+}
+
+/* --- Send Trigger Button --- */
+.sendBtn {
+  padding: 0.9rem 1.5rem;
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.sendBtn:hover {
+  background: #6d28d9;
+}
+
+.sendBtn:active {
+  transform: scale(0.97);
+}

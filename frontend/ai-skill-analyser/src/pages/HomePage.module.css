@@ -1,0 +1,169 @@
+/* ==========================================================================
+   1. MAIN CONTAINER (The main box that holds everything)
+   ========================================================================== */
+.container {
+  width: 100%; /* Fills the screen width */
+  max-width: 900px; /* Stops getting too wide on big monitors */
+  margin: 0 auto; /* Centers the whole page on the screen */
+  padding: 2rem 1.5rem; /* Leaves a nice space inside the borders */
+  box-sizing: border-box; /* Keeps padding inside the width so nothing breaks */
+
+  /* Page fade-in and slide-up animation when it loads */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: pageFadeInUp 0.5s ease-out forwards;
+}
+
+/* Animation details: moves up from 20px and goes from invisible to visible */
+@keyframes pageFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   2. HEADER & BRANDING (Title and Logo styling)
+   ========================================================================== */
+.header {
+  text-align: center; /* Centers all text in the header */
+  margin-bottom: 3rem; /* Adds a big gap below the header */
+}
+
+.titleName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* Adds a small gap between logo and text */
+  flex-wrap: wrap; /* Moves logo below/above text automatically on small phones */
+}
+
+.logo {
+  height: 60px; /* Perfect standard height for the logo image */
+  width: 60px; /* Perfect standard width for the logo image */
+}
+
+.title {
+  /* Dynamic font size: automatically shrinks on mobile and grows on desktop */
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: bold;
+  color: #a78bfa; /* Nice light purple color */
+  text-align: center;
+}
+
+.subtitle {
+  color: #94a3b8; /* Soft grey color for secondary text */
+  margin-top: 0.5rem;
+  font-size: clamp(
+    0.9rem,
+    3vw,
+    1.1rem
+  ); /* Dynamic size for the subtitle text */
+}
+
+/* ==========================================================================
+   3. SECTIONS (Spacing for different steps)
+   ========================================================================== */
+.section {
+  margin-bottom: 2.5rem; /* Adds a clean gap between Step 1 and Step 2 */
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  color: #a78bfa; /* Purple color to match the theme */
+  margin-bottom: 1rem; /* Space below the step title */
+}
+
+/* ==========================================================================
+   4. JOB ROLE GRID (The cards container)
+   ========================================================================== */
+.roleGrid {
+  display: grid;
+  /* Automatically fits as many cards as possible in a row. 
+     If screen size is too small, it changes to 1 column automatically. */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px; /* Space between all cards */
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   5. FILE UPLOADER (The Drag and Drop Box)
+   ========================================================================== */
+.dropzone {
+  border: 2px dashed #2d2d4e; /* Clean dotted border look */
+  border-radius: 12px; /* Smooth rounded corners */
+  padding: clamp(
+    1.5rem,
+    5vw,
+    2.5rem
+  ); /* Padding scales nicely with screen size */
+  text-align: center;
+  cursor: pointer; /* Shows a hand icon when hovering */
+  background: #16213e; /* Dark navy background color */
+
+  /* Smooth color change transition when user hovers over the box */
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Darkens the background slightly when mouse is over the box */
+.dropzone:hover {
+  background: #1c2b52;
+  border-color: #4c4c7d;
+}
+
+/* ==========================================================================
+   6. PRIMARY BUTTON (The Analyze Button)
+   ========================================================================== */
+.btn {
+  display: block;
+  margin: 0 auto; /* Centers the button horizontally */
+  padding: 1rem 3rem; /* Generous clicking area */
+  background: #7c3aed; /* Premium purple color */
+  color: white;
+  border: none; /* Removes default ugly browser borders */
+  border-radius: 10px; /* Smooth rounded button corners */
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: bold;
+
+  /* Smooth animations for hovering and clicking */
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+  width: auto; /* Takes size based on text length on desktop */
+}
+
+/* Makes button color a bit darker on hover */
+.btn:hover {
+  background: #6d28d9;
+}
+
+/* Gives a cool "pressing down" effect when clicked */
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   7. MOBILE RESPONSIVENESS (Special rules for small screens)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem; /* Shrinks container padding so code utilizes full screen width */
+  }
+
+  .header {
+    margin-bottom: 2rem; /* Less empty space on mobile screens */
+  }
+
+  .btn {
+    width: 100%; /* Makes the button full width (very easy to tap with thumb) */
+    padding: 1rem 2rem;
+  }
+}

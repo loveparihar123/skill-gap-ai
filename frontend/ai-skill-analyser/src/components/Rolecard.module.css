@@ -1,0 +1,38 @@
+.card {
+  background: #16213e;
+  border: 2px solid #2d2d4e;
+  border-radius: 18px;
+
+  min-height: 180px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #7c3aed;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+.selected {
+  border: 2px solid #7c3aed !important;
+  background: #1e1b4b !important;
+  transform: scale(1.05);
+}
