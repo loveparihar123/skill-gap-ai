@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { registerUser } from "../services/api";
+import { registerUser } from "src/services/api";
 import { useAuth } from "../context/AuthContext";
 import styles from "./RegisterPage.module.css";
 import { UserPlus } from "lucide-react";
