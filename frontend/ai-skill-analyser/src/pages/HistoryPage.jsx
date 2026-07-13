@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getHistory } from "../services/api";
+import { getHistory } from "/src/services/api";
 import styles from "./HistoryPage.module.css";
 import axios from "axios";
 

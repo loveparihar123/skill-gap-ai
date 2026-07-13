@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { sendChatMessage } from "src/services/api";
+import { sendChatMessage } from "/src/services/api";
 import ReactMarkdown from "react-markdown";
 import styles from "./ChatPage.module.css";
 
