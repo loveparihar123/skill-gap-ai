@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import RoleCard from "../components/RoleCard";
 import { useDropzone } from "react-dropzone";
-import { fetchRoles, analyzeResume } from "../services/api";
+import { fetchRoles, analyzeResume } from "/src/Services/api";
 import styles from "./HomePage.module.css";
 import logo from "../../../../Images/logo.png";
 
